@@ -1,9 +1,5 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-<<<<<<< HEAD
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-=======
-import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism';
->>>>>>> 28e83bf (fix(blog): prism highlighting)
 
 export default function Page() {
   return (
@@ -35,26 +31,24 @@ export default function Page() {
           <p className="mb-2">
             Here's how I added auto-pairs and comment toggling to my setup:
           </p>
-<<<<<<< HEAD
-          <SyntaxHighlighter language="lua" style={oneDark} customStyle={{ borderRadius: '0.5rem', fontSize: '0.875rem' }}>
+          <SyntaxHighlighter
+            language="lua"
+            style={oneDark}
+            customStyle={{ borderRadius: '0.5rem', fontSize: '0.875rem' }}
+          >
             {`-- plugins.lua
 {
-=======
-          <SyntaxHighlighter language="lua" style={nord} customStyle={{ borderRadius: '0.5rem', fontSize: '0.875rem' }}>
-            {`-- plugins.lua {
->>>>>>> 28e83bf (fix(blog): prism highlighting)
   "windwp/nvim-autopairs",
   config = function()
     require("nvim-autopairs").setup {}
   end,
-}
+},
 {
   "numToStr/Comment.nvim",
   config = function()
     require("Comment").setup()
   end,
-}
-`}
+}`}
           </SyntaxHighlighter>
         </div>
         <div>

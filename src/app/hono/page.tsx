@@ -1,10 +1,6 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-<<<<<<< HEAD
-import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-=======
 import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism';
->>>>>>> 28e83bf (fix(blog): prism highlighting)
 
 export default function Page() {
   return (
@@ -44,41 +40,33 @@ export default function Page() {
           <div className="space-y-6">
             <div>
               <h3 className="font-semibold text-sm mb-2">Express Example</h3>
-<<<<<<< HEAD
-              <SyntaxHighlighter language="javascript" style={oneDark} customStyle={{ borderRadius: '0.5rem', fontSize: '0.875rem' }}>
-=======
               <SyntaxHighlighter language="javascript" style={nord} customStyle={{ borderRadius: '0.5rem', fontSize: '0.875rem' }}>
->>>>>>> 28e83bf (fix(blog): prism highlighting)
                 {`const express = require('express')
-const app = express()
-app.get('/', (req, res) => {
-  res.send('Hello from Express!')
-})
-app.listen(3000)`}
+                  const app = express()
+                  app.get('/', (req, res) => {
+                  res.send('Hello from Express!')
+                  })
+                  app.listen(3000)`}
               </SyntaxHighlighter>
             </div>
             <div>
               <h3 className="font-semibold text-sm mb-2">Hono Example</h3>
-<<<<<<< HEAD
-              <SyntaxHighlighter language="javascript" style={oneDark} customStyle={{ borderRadius: '0.5rem', fontSize: '0.875rem' }}>
-=======
               <SyntaxHighlighter language="javascript" style={nord} customStyle={{ borderRadius: '0.5rem', fontSize: '0.875rem' }}>
->>>>>>> 28e83bf (fix(blog): prism highlighting)
                 {`import { Hono } from 'hono'
-const app = new Hono()
-app.get('/', (c) => c.text('Hello from Hono!'))
-export default app`}
+                  const app = new Hono()
+                  app.get('/', (c) => c.text('Hello from Hono!'))
+                  export default app`}
               </SyntaxHighlighter>
             </div>
-          </div>
-        </div>
+          </div >
+        </div >
         <div>
           <h2 className="text-xl font-semibold mb-2">Conclusion</h2>
           <p>
             Hono has proven to be a <strong>leaner, more developer-friendly</strong> choice for building APIs in modern JavaScript environments. If you're using TypeScript and care about performance, <strong>it's worth checking out</strong>.
           </p>
         </div>
-      </section>
-    </div>
+      </section >
+    </div >
   );
 }
