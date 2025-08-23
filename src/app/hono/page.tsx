@@ -3,7 +3,7 @@ import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export default function Page() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
+    <div className="max-w-3xl mx-auto py-10">
       <h1 className="text-2xl sm:text-3xl font-bold mb-4">
         Why I Picked Hono Over Express for My APIs
       </h1>
