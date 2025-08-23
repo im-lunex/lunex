@@ -7,6 +7,27 @@ export default function Page() {
       <main>
         <div className="w-full flex-col border-b pb-4">
           <p className="text-lg sm:text-xl font-medium">
+            Todo CLI
+          </p>
+          <p className="line-clamp-2 text-xs sm:text-sm mt-2">
+            A blazingly fast, secure CLI task manager built with Rust. Features multi-user support with encrypted file-based storage, task tracking with automatic timestamping, search functionality, and productivity insights. Built with Rust's safety guarantees for zero-cost abstractions, efficient file I/O, and comprehensive error handling across all platforms.
+          </p>
+          <div className="flex gap-2 mt-2">
+            <Badge>
+              Rust
+            </Badge>
+          </div>
+          <div className="w-full flex justify-between items-center text-sm">
+            <p className="mt-4">
+              Created on Aug 15, 2025
+            </p>
+            <Link href={"/todo-cli"} className="hover:border-b border-foreground">
+              Know More
+            </Link>
+          </div>
+        </div>
+        <div className="w-full flex-col border-b pb-4">
+          <p className="text-lg sm:text-xl font-medium">
             Jupyter
           </p>
           <p className="line-clamp-2 text-xs sm:text-sm mt-2">

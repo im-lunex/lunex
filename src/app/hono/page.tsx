@@ -1,5 +1,5 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export default function Page() {
   return (
@@ -39,22 +39,22 @@ export default function Page() {
           <div className="space-y-6">
             <div>
               <h3 className="font-semibold text-sm mb-2">Express Example</h3>
-              <SyntaxHighlighter language="javascript" style={nord} customStyle={{ borderRadius: '0.5rem', fontSize: '0.875rem' }}>
+              <SyntaxHighlighter language="javascript" style={oneDark} customStyle={{ borderRadius: '0.5rem', fontSize: '0.875rem' }}>
                 {`const express = require('express')
-                  const app = express()
-                  app.get('/', (req, res) => {
-                  res.send('Hello from Express!')
-                  })
-                  app.listen(3000)`}
+const app = express
+app.get('/', (req, res) => {
+res.send('Hello from Express!')
+})
+app.listen(3000)`}
               </SyntaxHighlighter>
             </div>
             <div>
               <h3 className="font-semibold text-sm mb-2">Hono Example</h3>
-              <SyntaxHighlighter language="javascript" style={nord} customStyle={{ borderRadius: '0.5rem', fontSize: '0.875rem' }}>
+              <SyntaxHighlighter language="javascript" style={oneDark} customStyle={{ borderRadius: '0.5rem', fontSize: '0.875rem' }}>
                 {`import { Hono } from 'hono'
-                  const app = new Hono()
-                  app.get('/', (c) => c.text('Hello from Hono!'))
-                  export default app`}
+const app = new Hono()
+app.get('/', (c) => c.text('Hello from Hono!'))
+export default app`}
               </SyntaxHighlighter>
             </div>
           </div >
