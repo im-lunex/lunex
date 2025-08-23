@@ -1,7 +1,7 @@
 export default function Page() {
   return (
     <>
-      <div className="max-w-3xl mx-auto px-4 py-8">
+      <div className="max-w-3xl mx-auto py-8">
         <h1 className="text-3xl font-semibold mb-4">Building My First Hono Project – A Hotel Booking API</h1>
 
         <section className="mb-6">

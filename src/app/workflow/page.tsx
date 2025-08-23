@@ -47,7 +47,7 @@ export default function Page() {
             />
           </Link>
         </div>
-        <div className="max-w-3xl mx-auto mt-16 px-4 text-foreground">
+        <div className="max-w-3xl mx-auto mt-16 text-foreground">
           <div className="flex-col text-foreground mb-8">
             <p className="border-b text-base sm:text-lg w-fit border-foreground font-medium">
               Crafting Flow :-

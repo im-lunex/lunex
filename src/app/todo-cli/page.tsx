@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export default function Page() {
   return (
     <>
-      <div className="max-w-3xl mx-auto px-4 py-8">
+      <div className="max-w-3xl mx-auto py-8">
         <h1 className="text-3xl font-semibold mb-4">Building a Blazingly Fast CLI Task Manager - with Rust</h1>
         <section className="mb-6">
           <h2 className="text-xl font-semibold mb-2">Project Overview</h2>
@@ -81,7 +81,7 @@ export default function Page() {
         <section className="mb-6">
           <h2 className="text-xl font-semibold mb-2">Installation & Usage</h2>
           <p>Get started quickly with cargo:</p>
-          <SyntaxHighlighter language="bash" style={oneDark} customStyle={{ borderRadius: '0.5rem', fontSize: '0.875rem' }}>
+          <SyntaxHighlighter language="bash" style={nord} customStyle={{ borderRadius: '0.5rem', fontSize: '0.875rem' }}>
             {`# Install from GitHub
 cargo install --git https://github.com/im-lunex/todo-cli.git
 
@@ -92,8 +92,8 @@ cargo run`}
           </SyntaxHighlighter>
         </section>
         <div className="bg-muted p-4 rounded mt-8">
-          <p><strong>💡 Built to learn Rust and create something useful.</strong> View the source code on
-            <Link href="https://github.com/im-lunex/todo-cli" className="underline ml-1"> GitHub</Link>!</p>
+          <p><strong>💬 Built to learn Rust and create something useful.</strong> View the source code on
+            <Link href="https://github.com/im-lunex/todo-cli" className="underline ml-1">GitHub</Link></p>
         </div>
       </div>
     </>
