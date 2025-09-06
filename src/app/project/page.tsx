@@ -26,7 +26,7 @@ export default function Page() {
             </Link>
           </div>
         </div>
-        <div className="w-full flex-col border-b pb-4">
+        <div className="w-full flex-col border-b pb-4 pt-3">
           <p className="text-lg sm:text-xl font-medium">
             Jupyter
           </p>
