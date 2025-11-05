@@ -1,0 +1,283 @@
+{
+  "home": {
+    "name": "Lunex",
+    "title": "Backend Developer",
+    "socials": [
+      {
+        "name": "github",
+        "url": "https://github.com/im-lunex"
+      },
+      {
+        "name": "dev.to",
+        "url": "https://dev.to/imlunex"
+      }
+    ],
+    "about": {
+      "title": "About :-",
+      "description": "I'm <strong>Lunex</strong>, a dedicated backend developer with a strong foundation in system design and performance optimization. My expertise lies in building robust <strong>server-side applications</strong> and <strong>RESTful APIs</strong>. I'm also an active <strong>competitive programmer</strong>, constantly honing my problem-solving skills and algorithmic thinking.<br /><br />My development environment is powered by <strong>Arch Linux</strong>, <strong>Neovim</strong>, and a <strong>minimal setup</strong> that maximizes productivity. While I specialize in backend development, I'm also comfortable working with frontend technologies when needed."
+    },
+    "workflow": {
+      "title": "Workflow :-",
+      "description": "I use <strong>Arch</strong> for full control—lean, fast, and free of bloat. My workflow is built for <strong>speed</strong> and <strong>clarity</strong>:<strong> Neovim</strong> for precision, <strong>tmux</strong> for flow, <strong>Git</strong> for discipline.<br /><br />I automate the repetitive, map tools to muscle memory, and keep my stack minimal so I can focus purely on <strong>solving problems</strong>—whether it's building <strong>APIs with Hono</strong>, wiring <strong>UI in React</strong>, or optimizing servers."
+    },
+    "techStack": {
+      "title": "Tech Stack:",
+      "badges": [
+        "Rust",
+        "Node.js",
+        "Express",
+        "Hono.js",
+        "TypeScript",
+        "PostgreSQL",
+        "MongoDB",
+        "C++",
+        "Data Structures",
+        "Algorithms",
+        "Git",
+        "Linux",
+        "Neovim"
+      ]
+    },
+    "currentlyExploring": {
+      "title": "Currently Exploring :-",
+      "description": "I'm actively participating in <strong>competitive programming contests</strong> on platforms like CodeForces and LeetCode to strengthen my algorithmic problem-solving skills.<br /><br />Simultaneously, I'm exploring advanced concepts in <strong>distributed systems</strong>, <strong>microservices architecture</strong>, and <strong>cloud-native development</strong>. Working on implementing <strong>scalable backend solutions</strong> using Node.js and TypeScript, with a focus on <strong>performance optimization</strong> and <strong>system design</strong>."
+    },
+    "footer": "Built on Arch, typed in Neovim"
+  },
+  "arch-rice": {
+    "image": {
+      "src": "/base-rice.png",
+      "alt": "Base Rice"
+    },
+    "details": {
+      "title": "Details :-",
+      "description": "This snapshot captures my full coding environment in action — minimal, focused, and keyboard-driven. I'm using <strong>Neovim</strong> (NvChad-based) as my editor, enhanced with <strong>Telescope</strong>, LSPs, and Tree-sitter for seamless navigation and syntax clarity.<br /><br />The workspace is managed by <strong>Hyprland</strong>, my dynamic tiling window manager, where every window flows smoothly between workspaces. The terminal running below is <strong>Kitty</strong>, and the shell is <strong>Fish</strong> — tuned for performance and efficiency with autosuggestions and rich prompts.<br /><br />A <strong>lofi playlist</strong> or a <strong>TED talk</strong> usually plays in the background, keeping the vibes calm and focused. Each detail in this setup — from status bars to plugin load times — reflects my goal of building in an environment that’s both minimal and powerful."
+    }
+  },
+  "blog": [
+    {
+      "title": "Why I Chose Hono Over Express for My API",
+      "description": "I switched from Express to Hono for building APIs—and it changed everything. In this post, I break down why Hono’s speed, simplicity, and TypeScript-first design made it the better choice for my projects.",
+      "date": "May 10, 2025",
+      "category": "Hono",
+      "link": "/hono"
+    },
+    {
+      "title": "Swapped VSCode for Neovim — Powered by NvChad",
+      "description": "I ditched VSCode and entered the world of Neovim with NvChad. Here's how this fast, keyboard-first setup supercharged my workflow—and why I think every dev should give it a try.",
+      "date": "May 10, 2025",
+      "category": "Neovim",
+      "link": "/neovim"
+    }
+  ],
+  "hono": {
+    "title": "Why I Picked Hono Over Express for My APIs",
+    "subtitle": "I switched from Express to Hono for building APIs—and it changed everything. Here's why <strong>Hono's speed, simplicity, and TypeScript-first approach</strong> won me over.",
+    "sections": [
+      {
+        "title": "What is Hono?",
+        "content": "Hono is a <strong>lightweight, fast web framework</strong> tailored for modern edge platforms like Cloudflare Workers, Vercel, and Bun. It offers <strong>simple syntax</strong> and native <strong>TypeScript support</strong>."
+      },
+      {
+        "title": "Why I Moved Away from Express",
+        "list": [
+          "<strong>Heavier setup:</strong> Express felt too bloated for small APIs.",
+          "<strong>Middleware complexity:</strong> Managing and chaining middleware became messy.",
+          "<strong>TypeScript overhead:</strong> Getting types to work well took too much configuration."
+        ]
+      },
+      {
+        "title": "Why Hono Works Better for Me",
+        "list": [
+          "<strong>Faster performance:</strong> Especially on edge runtimes.",
+          "<strong>Minimalistic syntax:</strong> Straightward and readable.",
+          "<strong>TypeScript-first design:</strong> Built-in types for routes and contexts.",
+          "<strong>Small bundle size:</strong> Great for microservices and serverless."
+        ]
+      },
+      {
+        "title": "Code Comparison",
+        "code": [
+          {
+            "title": "Express Example",
+            "language": "javascript",
+            "snippet": "const express = require('express')\nconst app = express\napp.get('/', (req, res) => {\nres.send('Hello from Express!')\n})\napp.listen(3000)"
+          },
+          {
+            "title": "Hono Example",
+            "language": "javascript",
+            "snippet": "import { Hono } from 'hono'\nconst app = new Hono()\napp.get('/', (c) => c.text('Hello from Hono!'))\nexport default app"
+          }
+        ]
+      },
+      {
+        "title": "Conclusion",
+        "content": "Hono has proven to be a <strong>leaner, more developer-friendly</strong> choice for building APIs in modern JavaScript environments. If you're using TypeScript and care about performance, <strong>it's worth checking out</strong>."
+      }
+    ]
+  },
+  "workflow": {
+    "images": [
+      {
+        "src": "/terminal.png",
+        "alt": "Terminal",
+        "link": "/terminal"
+      },
+      {
+        "src": "/nvim1.png",
+        "alt": "Neovim 1",
+        "link": "/nvim1"
+      },
+      {
+        "src": "/nvim2.png",
+        "alt": "Neovim 2",
+        "link": "/nvim2"
+      },
+      {
+        "src": "/base-rice.png",
+        "alt": "Base Rice",
+        "link": "/arch-rice"
+      }
+    ],
+    "sections": [
+      {
+        "title": "CLI Workflow",
+        "content": "My workflow is centered around the terminal. I use <strong>Fish</strong> as my shell, which provides features like autosuggestions, syntax highlighting, and a rich ecosystem of plugins. I use <strong>Tmux</strong> for session management, allowing me to have multiple persistent sessions and switch between them seamlessly."
+      },
+      {
+        "title": "Editor",
+        "content": "I use <strong>Neovim</strong> as my primary text editor. I have a custom configuration based on <strong>NvChad</strong> that is tailored to my needs. I use a variety of plugins to enhance my productivity, including <strong>Telescope</strong> for fuzzy finding, <strong>LSP</strong> for code intelligence, and <strong>Tree-sitter</strong> for syntax highlighting."
+      },
+      {
+        "title": "Window Management",
+        "content": "I use <strong>Hyprland</strong> as my window manager on Arch Linux. It is a dynamic tiling window manager that allows me to manage my windows efficiently. I have a custom configuration that is optimized for my workflow."
+      }
+    ]
+  },
+  "nvim1": {
+    "image": {
+      "src": "/nvim1.png",
+      "alt": "Neovim 1"
+    },
+    "details": {
+      "title": "Neovim with Telescope",
+      "description": "This is my Neovim setup with the Telescope plugin open. Telescope is a fuzzy finder that I use for everything from finding files to searching for text in my project."
+    }
+  },
+  "nvim2": {
+    "image": {
+      "src": "/nvim2.png",
+      "alt": "Neovim 2"
+    },
+    "details": {
+      "title": "Neovim with LSP",
+      "description": "Here you can see my Neovim setup with the LSP (Language Server Protocol) in action. I get real-time diagnostics, code completion, and other language-specific features directly in my editor."
+    }
+  },
+  "terminal": {
+    "image": {
+      "src": "/terminal.png",
+      "alt": "Terminal"
+    },
+    "details": {
+      "title": "My Terminal Setup",
+      "description": "This is my terminal setup. I use <strong>Kitty</strong> as my terminal emulator and <strong>Fish</strong> as my shell. The prompt is customized to show the current git branch and other useful information."
+    }
+  },
+  "neovim": {
+    "title": "Swapped VSCode for Neovim — Powered by NvChad",
+    "subtitle": "I ditched VSCode and entered the world of Neovim with NvChad. Here's how this fast, keyboard-first setup supercharged my workflow—and why I think every dev should give it a try.",
+    "sections": [
+      {
+        "title": "What is NvChad?",
+        "content": "NvChad is a Neovim configuration that provides a beautiful and fast experience out of the box. It comes with a set of sensible defaults and a curated list of plugins that make it easy to get started with Neovim."
+      },
+      {
+        "title": "Why I Switched",
+        "list": [
+          "<strong>Performance:</strong> Neovim is incredibly fast and lightweight.",
+          "<strong>Keyboard-driven:</strong> I can do everything from the keyboard, which is much more efficient.",
+          "<strong>Customization:</strong> I can customize every aspect of my editor to fit my workflow.",
+          "<strong>Community:</strong> The Neovim community is amazing and there are tons of great plugins available."
+        ]
+      },
+      {
+        "title": "My Favorite Plugins",
+        "list": [
+          "<strong>Telescope:</strong> A fuzzy finder that I use for everything.",
+          "<strong>LSP:</strong> For code intelligence and diagnostics.",
+          "<strong>Tree-sitter:</strong> For syntax highlighting and code navigation.",
+          "<strong>Git signs:</strong> To see git changes directly in the editor."
+        ]
+      },
+      {
+        "title": "Conclusion",
+        "content": "Switching to Neovim has been a game-changer for my productivity. It took some time to get used to the modal editing and the keyboard-driven workflow, but it was well worth it. If you're a developer who values speed and efficiency, I highly recommend giving Neovim a try."
+      }
+    ]
+  },
+  "project": {
+    "projects": [
+      {
+        "title": "Todo CLI",
+        "description": "A simple command-line interface for managing your todos. Built with Node.js and TypeScript.",
+        "tags": ["Node.js", "TypeScript", "CLI"],
+        "date": "Completed",
+        "link": "/todo-cli"
+      },
+      {
+        "title": "Git CLI",
+        "description": "A meticulous, hands-on project to implement the core features of the Git version control system from the ground up, following the CodeCrafters challenge. This repository serves as a deep dive into the internal mechanics of Git, covering everything from object storage and hashing to branch management.",
+        "tags": ["Rust", "CLI", "Git"],
+        "date": "Completed",
+        "link": "/git-cli"
+      }
+    ],
+    "footer": "More projects coming soon..."
+  },
+  "todo-cli": {
+    "title": "Todo CLI",
+    "sections": [
+      {
+        "title": "Project Overview",
+        "content": "A simple command-line interface for managing your todos. Built with Node.js and TypeScript."
+      },
+      {
+        "title": "Features",
+        "list": [
+          "Add new todos",
+          "List all todos",
+          "Complete a todo",
+          "Delete a todo"
+        ]
+      },
+      {
+        "title": "Usage",
+        "code": {
+          "language": "bash",
+          "snippet": "bun todo add \"Buy milk\""
+        }
+      }
+    ],
+    "banner": "This project is a simple CLI application to demonstrate my skills in building command-line tools with Node.js and TypeScript."
+  },
+  "git-cli": {
+    "title": "Git CLI",
+    "sections": [
+      {
+        "title": "Project Overview",
+        "content": "A meticulous, hands-on project to implement the core features of the Git version control system from the ground up, following the CodeCrafters challenge. This repository serves as a deep dive into the internal mechanics of Git, covering everything from object storage and hashing to branch management."
+      },
+      {
+        "title": "Features",
+        "list": [
+          "Initialize a new Git repository",
+          "Hash objects and store them in the object database",
+          "Create commit objects",
+          "Create and manage branches"
+        ]
+      }
+    ],
+    "banner": "This project was built as part of the CodeCrafters challenge to build your own Git."
+  }
+}

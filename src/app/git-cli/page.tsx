@@ -2,7 +2,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nord } from "react-syntax-highlighter/dist/esm/styles/prism";
 import siteData from "@/lib/siteData.json";
 
-interface TodoCliData {
+interface GitCliData {
   title: string;
   sections: Section[];
   banner: string;
@@ -21,8 +21,8 @@ interface Section {
 
 export default function Page() {
   const { title, sections, banner } = siteData[
-    "todo-cli" as keyof typeof siteData
-  ] as TodoCliData;
+    "git-cli" as keyof typeof siteData
+  ] as GitCliData;
 
   return (
     <>
