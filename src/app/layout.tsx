@@ -6,7 +6,7 @@ import "./globals.css";
 import siteData from "@/lib/siteData.json";
 import { SiteData } from "@/lib/types";
 
-const typedSiteData = siteData as unknown as SiteData;
+const typedSiteData = siteData as SiteData;
 const { footer } = typedSiteData.home;
 
 const outfit = Outfit({
@@ -16,9 +16,9 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Lunex | Full-Stack Engineer",
+  title: "Lunex | Backend Engineer",
   description:
-    "Junior Full-Stack Engineer portfolio showcasing minimal workflow and projects",
+    "Backend Engineer portfolio showcasing minimal workflow and projects",
   viewport: "width=device-width, initial-scale=1",
 };
 
@@ -29,12 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+      <head />
       <body className={`${outfit.variable} antialiased max-w-2xl mx-auto px-4`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />

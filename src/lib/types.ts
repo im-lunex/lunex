@@ -191,7 +191,7 @@ export interface SiteData {
   "arch-rice": ArchRiceData;
   blog: BlogPost[];
   hono: HonoData;
-  jupyter: JupyterData;
+  jupyter?: JupyterData;
   neovim: NeovimData;
   nvim1: NvimData;
   nvim2: NvimData;

@@ -1,9 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
 import siteData from "@/lib/siteData.json";
+import React from "react";
+import { SiteData } from "@/lib/types";
+
+const SafeHtml = ({ html }: { html: string }) => {
+  const parts = html.split(/(<strong>.*?<\/strong>|<br \/>)/g).filter(Boolean);
+
+  return (
+    <>
+      {parts.map((part, index) => {
+        if (part.startsWith("<strong>")) {
+          return (
+            <strong key={index}>{part.replace(/<\/?strong>/g, "")}</strong>
+          );
+        }
+        if (part === "<br />") {
+          return <br key={index} />;
+        }
+        return <React.Fragment key={index}>{part}</React.Fragment>;
+      })}
+    </>
+  );
+};
 
 export default function Page() {
-  const { images, sections } = siteData.workflow;
+  const { images, sections } = (siteData as SiteData).workflow;
 
   return (
     <>
@@ -29,15 +51,16 @@ export default function Page() {
                 {section.title}
               </p>
               {section.content && (
-                <p
-                  className="mt-2 text-sm sm:text-md tracking-wide text-foreground/85"
-                  dangerouslySetInnerHTML={{ __html: section.content }}
-                />
+                <p className="mt-2 text-sm sm:text-md tracking-wide text-foreground/85">
+                  <SafeHtml html={section.content} />
+                </p>
               )}
               {section.list && (
                 <ul className="mt-2 space-y-1 text-sm sm:text-md text-foreground/85 list-disc list-inside">
                   {section.list.map((item, i) => (
-                    <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+                    <li key={i}>
+                      <SafeHtml html={item} />
+                    </li>
                   ))}
                 </ul>
               )}
