@@ -9,15 +9,16 @@ export default function Page() {
       <main>
         {projects.map((project, index) => (
           <div key={index} className="w-full flex flex-col border-b pb-4 pt-3">
-            <p className="text-lg sm:text-xl font-medium">{project.title}</p>
-            <p className="line-clamp-2 text-xs sm:text-sm mt-2">
+            <p className="text-lg sm:text-xl font-medium" data-cursor="btn">{project.title}</p>
+            <p className="line-clamp-2 text-xs sm:text-sm mt-2" data-cursor="btn">
               {project.description}
             </p>
             <div className="w-full flex justify-between items-center text-sm">
-              <p className="mt-4">{project.date}</p>
+              <p className="mt-4" data-cursor="btn">{project.date}</p>
               <Link
                 href={project.link}
                 className="hover:border-b border-foreground"
+                data-cursor="link"
               >
                 Know More
               </Link>

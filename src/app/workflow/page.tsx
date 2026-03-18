@@ -40,6 +40,7 @@ export default function Page() {
                 height={100}
                 className="object-cover"
                 priority={index === 0}
+                data-cursor="btn"
               />
             </Link>
           ))}

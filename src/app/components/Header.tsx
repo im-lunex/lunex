@@ -15,20 +15,20 @@ export default function Header() {
   return (
     <>
       <header className="w-full h-24 md:h-32 flex items-center justify-between">
-        <Link className="font-semibold text-xl md:text-2xl" href={"/"}>
+        <Link className="font-semibold text-xl md:text-2xl" data-cursor="invert" href={"/"}>
           Lunex
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex justify-between gap-6 items-center">
           <div className="flex gap-6 lg:gap-12 items-center text-base lg:text-lg">
-            <Link href={"/workflow"} className="hover:underline">
+            <Link href={"/workflow"} className="hover:underline" data-cursor="link">
               Workflow
             </Link>
-            <Link href={"/blog"} className="hover:underline">
+            <Link href={"/blog"} className="hover:underline" data-cursor="link">
               Blog
             </Link>
-            <Link href={"/project"} className="hover:underline">
+            <Link href={"/project"} className="hover:underline" data-cursor="link">
               Project
             </Link>
           </div>

@@ -49,8 +49,8 @@ export default function Home() {
         <div className="w-full justify-between flex flex-col sm:flex-row gap-4 sm:gap-0 sm:items-end border-b pb-6">
           <div className="flex items-end gap-3">
             <div className="flex-col -space-y-1 pb-1">
-              <p className="text-xl font-medium">{name}</p>
-              <p className="text-base sm:text-lg font-light text-foreground/85">
+              <p className="text-xl font-medium" data-cursor="invert">{name}</p>
+              <p className="text-base sm:text-lg font-light text-foreground/85" data-cursor="invert">
                 {title}
               </p>
             </div>
@@ -62,6 +62,7 @@ export default function Home() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-cursor="btn"
               >
                 {socialIcons[social.name]}
               </a>
@@ -72,27 +73,27 @@ export default function Home() {
           <p className="border-b text-base sm:text-lg w-fit border-foreground leading-tight text-foreground font-medium">
             {about.title}
           </p>
-          <p className="mt-2 text-sm sm:text-md tracking-wide text-foreground/85">
+          <p className="mt-2 text-sm sm:text-md tracking-wide text-foreground/85" data-cursor="invert">
             <SafeHtml html={about.description} />
           </p>
         </div>
 
         <div className="flex-col mt-10 text-foreground">
-          <p className="border-b text-base sm:text-lg w-fit border-foreground leading-tight text-foreground font-medium">
+          <p className="border-b text-base sm:text-lg w-fit border-foreground leading-tight text-foreground font-medium" >
             {workflow.title}
           </p>
-          <p className="mt-2 text-sm sm:text-md tracking-wide text-foreground/85">
+          <p className="mt-2 text-sm sm:text-md tracking-wide text-foreground/85" data-cursor="invert">
             <SafeHtml html={workflow.description} />
           </p>
         </div>
 
         <div className="flex-col mt-10 text-foreground">
-          <p className="border-b text-base sm:text-lg w-fit border-foreground leading-tight text-foreground font-medium">
+          <p className="border-b text-base sm:text-lg w-fit border-foreground leading-tight text-foreground font-medium" >
             {techStack.title}
           </p>
           <div className="mt-3 flex flex-wrap gap-2 sm:gap-3">
             {techStack.badges.map((badge) => (
-              <Badge key={badge}>
+              <Badge key={badge} data-cursor="btn">
                 <strong>{badge}</strong>
               </Badge>
             ))}
@@ -103,7 +104,7 @@ export default function Home() {
           <p className="border-b text-base sm:text-lg w-fit border-foreground leading-tight text-foreground font-medium">
             {currentlyExploring.title}
           </p>
-          <p className="mt-2 text-sm sm:text-md tracking-wide text-foreground/85">
+          <p className="mt-2 text-sm sm:text-md tracking-wide text-foreground/85" data-cursor="invert">
             <SafeHtml html={currentlyExploring.description} />
           </p>
         </div>

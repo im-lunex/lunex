@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import "./globals.css";
 import siteData from "@/lib/siteData.json";
 import { SiteData } from "@/lib/types";
+import Cursor from "./components/cursor";
 
 const typedSiteData = siteData as SiteData;
 const { footer } = typedSiteData.home;
@@ -33,8 +34,9 @@ export default function RootLayout({
       <body className={`${outfit.variable} antialiased max-w-2xl mx-auto px-4`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
+          <Cursor />
           {children}
-          <footer className="text-muted-foreground bottom-0 text-center text-xs sm:text-sm mb-10 mx-auto mt-20 sm:mt-28 border-b w-fit border-muted-foreground">
+          <footer className="text-muted-foreground bottom-0 text-center text-xs sm:text-sm mb-10 mx-auto mt-20 sm:mt-28 border-b w-fit border-muted-foreground" data-cursor="invert">
             {footer}
           </footer>
         </ThemeProvider>
