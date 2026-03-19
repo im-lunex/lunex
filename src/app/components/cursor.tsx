@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { animate, type Animation } from 'animejs'
+import { animate, type JSAnimation } from 'animejs'
 
 export default function Cursor() {
   const outerRef = useRef<HTMLDivElement>(null)
@@ -10,9 +10,9 @@ export default function Cursor() {
 
   const pos = useRef({ mx: 0, my: 0, ox: 0, oy: 0 })
   const cursorType = useRef('default')
-  const outerAnim = useRef<Animation | null>(null)
-  const innerAnim = useRef<Animation | null>(null)
-  const labelAnim = useRef<Animation | null>(null)
+  const outerAnim = useRef<JSAnimation | null>(null)
+  const innerAnim = useRef<JSAnimation | null>(null)
+  const labelAnim = useRef<JSAnimation | null>(null)
   const rafRef = useRef<number>(0)
 
   useEffect(() => {
