@@ -1,13 +1,19 @@
 'use client'
+
 import { useEffect, useRef } from 'react'
-import { animate } from 'animejs'
+import { animate, type Animation } from 'animejs'
 
 export default function Cursor() {
   const outerRef = useRef<HTMLDivElement>(null)
   const innerRef = useRef<HTMLDivElement>(null)
   const viewLabelRef = useRef<HTMLSpanElement | null>(null)
+
   const pos = useRef({ mx: 0, my: 0, ox: 0, oy: 0 })
   const cursorType = useRef('default')
+  const outerAnim = useRef<Animation | null>(null)
+  const innerAnim = useRef<Animation | null>(null)
+  const labelAnim = useRef<Animation | null>(null)
+  const rafRef = useRef<number>(0)
 
   useEffect(() => {
     if (!window.matchMedia('(pointer: fine)').matches) return
@@ -19,137 +25,181 @@ export default function Cursor() {
     const css = (v: string) =>
       getComputedStyle(document.documentElement).getPropertyValue(v).trim()
 
-    const onMove = (e: MouseEvent) => {
-      p.mx = e.clientX
-      p.my = e.clientY
-    }
-    document.addEventListener('mousemove', onMove)
-
+    // ── rAF position loop — never stops, survives page changes ──────
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t
 
-    let raf: number
     const tick = () => {
-      inner.style.transform = `translate(${p.mx}px, ${p.my}px) translate(-50%, -50%)`
+      inner.style.transform = `translate(${p.mx}px, ${p.my}px) translate(-50%,-50%)`
       p.ox = lerp(p.ox, p.mx, 0.14)
       p.oy = lerp(p.oy, p.my, 0.14)
-      outer.style.transform = `translate(${p.ox}px, ${p.oy}px) translate(-50%, -50%)`
+      outer.style.transform = `translate(${p.ox}px, ${p.oy}px) translate(-50%,-50%)`
       if (viewLabelRef.current) {
-        viewLabelRef.current.style.transform = `translate(${p.ox}px, ${p.oy}px) translate(-50%, -50%)`
+        viewLabelRef.current.style.transform = `translate(${p.ox}px, ${p.oy}px) translate(-50%,-50%)`
       }
-      raf = requestAnimationFrame(tick)
+      rafRef.current = requestAnimationFrame(tick)
     }
-    tick()
+    rafRef.current = requestAnimationFrame(tick)
 
-    const animateOuter = (scale: number, opts?: { duration?: number; easing?: string }) =>
-      animate(outer, {
-        scale,
-        duration: opts?.duration ?? 320,
-        easing: opts?.easing ?? 'easeOutElastic(1, .7)',
-      })
+    // ── Helpers ─────────────────────────────────────────────────────
+    const animOuter = (props: Record<string, unknown>, duration: number, easing: string) => {
+      outerAnim.current?.pause()
+      outerAnim.current = animate(outer, { ...props, duration, easing })
+    }
 
-    const animateInner = (scale: number, opacity: number) =>
-      animate(inner, { scale, opacity, duration: 200, easing: 'easeOutQuart' })
+    const animInner = (props: Record<string, unknown>, duration: number, easing: string) => {
+      innerAnim.current?.pause()
+      innerAnim.current = animate(inner, { ...props, duration, easing })
+    }
 
-    const reset = () => {
-      cursorType.current = 'default'
+    const removeLabel = () => {
+      labelAnim.current?.pause()
+      labelAnim.current = null
+      viewLabelRef.current?.remove()
+      viewLabelRef.current = null
+    }
+
+    const applyDefault = () => {
       outer.style.mixBlendMode = 'normal'
       outer.style.background = 'transparent'
       outer.style.borderColor = `oklch(from var(--foreground) l c h / 0.5)`
-      animateOuter(1, { duration: 280, easing: 'easeOutElastic(1, .7)' })
-      animateInner(1, 1)
-      viewLabelRef.current?.remove()
-      viewLabelRef.current = null
+      animOuter({ scale: 1 }, 260, 'easeOutElastic(1, .7)')
+      animInner({ scale: 1, opacity: 1 }, 180, 'easeOutQuart')
+    }
+
+    const reset = () => {
+      if (cursorType.current === 'default') return
+      cursorType.current = 'default'
+      removeLabel()
+      applyDefault()
     }
 
     const setCursor = (type: string) => {
       if (cursorType.current === type) return
       cursorType.current = type
-      viewLabelRef.current?.remove()
-      viewLabelRef.current = null
+      removeLabel()
       outer.style.mixBlendMode = 'normal'
 
-      if (type === 'invert') {
-        outer.style.background = css('--foreground')
-        outer.style.borderColor = 'transparent'
-        outer.style.mixBlendMode = 'difference'
-        animateOuter(1.15, { duration: 260, easing: 'easeOutQuart' })
-        animateInner(0, 0)
-      }
+      switch (type) {
+        case 'invert':
+          outer.style.background = css('--foreground')
+          outer.style.borderColor = 'transparent'
+          outer.style.mixBlendMode = 'difference'
+          animOuter({ scale: 1.15 }, 220, 'easeOutQuart')
+          animInner({ scale: 0, opacity: 0 }, 140, 'easeOutQuart')
+          break
 
-      if (type === 'link') {
-        outer.style.background = css('--foreground')
-        outer.style.borderColor = 'transparent'
-        outer.style.mixBlendMode = 'difference'
-        animateOuter(0.55, { duration: 240, easing: 'easeOutElastic(1, .9)' })
-        animateInner(0, 0)
-      }
+        case 'link':
+          outer.style.background = css('--foreground')
+          outer.style.borderColor = 'transparent'
+          outer.style.mixBlendMode = 'difference'
+          animOuter({ scale: 0.55 }, 200, 'easeOutElastic(1, .9)')
+          animInner({ scale: 0, opacity: 0 }, 140, 'easeOutQuart')
+          break
 
-      if (type === 'btn') {
-        outer.style.background = `oklch(from var(--primary) l c h / 0.12)`
-        outer.style.borderColor = css('--primary')
-        outer.style.mixBlendMode = 'normal'
-        animateOuter(1.6, { duration: 360, easing: 'easeOutElastic(1, .6)' })
-        animateInner(0, 0)
-      }
+        case 'btn':
+          outer.style.background = `oklch(from var(--primary) l c h / 0.12)`
+          outer.style.borderColor = css('--primary')
+          animOuter({ scale: 1.6 }, 320, 'easeOutElastic(1, .6)')
+          animInner({ scale: 0, opacity: 0 }, 140, 'easeOutQuart')
+          break
 
-      if (type === 'view') {
-        outer.style.background = `oklch(from var(--primary) l c h / 0.1)`
-        outer.style.borderColor = 'transparent'
-        outer.style.mixBlendMode = 'normal'
-        animateOuter(2.2, { duration: 380, easing: 'easeOutElastic(1, .5)' })
-        animateInner(0, 0)
+        case 'view':
+          outer.style.background = `oklch(from var(--primary) l c h / 0.1)`
+          outer.style.borderColor = 'transparent'
+          animOuter({ scale: 2.2 }, 340, 'easeOutElastic(1, .5)')
+          animInner({ scale: 0, opacity: 0 }, 140, 'easeOutQuart')
+          {
+            const label = document.createElement('span')
+            label.textContent = 'view'
+            Object.assign(label.style, {
+              position: 'fixed',
+              top: '0',
+              left: '0',
+              pointerEvents: 'none',
+              zIndex: '9999',
+              fontSize: '10px',
+              letterSpacing: '.12em',
+              textTransform: 'uppercase',
+              color: css('--foreground'),
+              opacity: '0',
+              willChange: 'transform',
+              fontFamily: css('--font-sans'),
+            })
+            document.body.appendChild(label)
+            viewLabelRef.current = label
+            labelAnim.current = animate(label, { opacity: 1, duration: 140, delay: 50, easing: 'easeOutQuart' })
+          }
+          break
 
-        const label = document.createElement('span')
-        label.textContent = 'view'
-        Object.assign(label.style, {
-          position: 'fixed',
-          top: '0',
-          left: '0',
-          pointerEvents: 'none',
-          zIndex: '9999',
-          fontSize: '10px',
-          letterSpacing: '.12em',
-          textTransform: 'uppercase',
-          color: css('--foreground'),
-          opacity: '0',
-          willChange: 'transform',
-          fontFamily: css('--font-sans'),
-        })
-        document.body.appendChild(label)
-        viewLabelRef.current = label
-        animate(label, { opacity: 1, duration: 150, delay: 60, easing: 'easeOutQuart' })
-      }
+        case 'card':
+          outer.style.background = `oklch(from var(--foreground) l c h / 0.04)`
+          outer.style.borderColor = css('--border')
+          animOuter({ scale: 1.35 }, 260, 'easeOutElastic(1, .7)')
+          animInner({ scale: 0.5, opacity: 0.3 }, 180, 'easeOutQuart')
+          break
 
-      if (type === 'card') {
-        outer.style.background = `oklch(from var(--foreground) l c h / 0.04)`
-        outer.style.borderColor = css('--border')
-        outer.style.mixBlendMode = 'normal'
-        animateOuter(1.35, { duration: 300, easing: 'easeOutElastic(1, .7)' })
-        animateInner(0.5, 0.3)
+        default:
+          reset()
       }
     }
 
-    const magneticEls = document.querySelectorAll<HTMLElement>('[data-cursor]')
-    const cleanups: (() => void)[] = []
+    // ── Event delegation on document — survives ANY page navigation ─
+    // Instead of querying elements once, we check the hovered target live.
+    // This means zero re-setup needed after route changes.
+    const getDataCursor = (e: MouseEvent): string | null => {
+      const el = (e.target as HTMLElement).closest<HTMLElement>('[data-cursor]')
+      return el?.dataset.cursor ?? null
+    }
 
-    magneticEls.forEach(el => {
-      const type = el.dataset.cursor!
+    const onMouseOver = (e: MouseEvent) => {
+      const type = getDataCursor(e)
+      if (type) {
+        setCursor(type)
+      } else {
+        reset()
+      }
+    }
 
-      const onEnter = () => setCursor(type)
-      const onLeave = () => reset()
+    const onMouseOut = (e: MouseEvent) => {
+      // Only reset if we're leaving into something with no data-cursor
+      const to = e.relatedTarget as HTMLElement | null
+      if (!to?.closest('[data-cursor]')) {
+        reset()
+      }
+    }
 
-      el.addEventListener('mouseenter', onEnter)
-      el.addEventListener('mouseleave', onLeave)
-      cleanups.push(() => {
-        el.removeEventListener('mouseenter', onEnter)
-        el.removeEventListener('mouseleave', onLeave)
-      })
-    })
+    const onMouseMove = (e: MouseEvent) => {
+      p.mx = e.clientX
+      p.my = e.clientY
+    }
+
+    // Reset when mouse leaves viewport (alt-tab, switching windows)
+    const onDocLeave = (e: MouseEvent) => {
+      if (!e.relatedTarget) reset()
+    }
+
+    // Reset on tab switch
+    const onVisChange = () => {
+      if (document.hidden) reset()
+    }
+
+    document.addEventListener('mousemove', onMouseMove, { passive: true })
+    document.addEventListener('mouseover', onMouseOver, { passive: true })
+    document.addEventListener('mouseout', onMouseOut, { passive: true })
+    document.addEventListener('mouseleave', onDocLeave)
+    document.addEventListener('visibilitychange', onVisChange)
 
     return () => {
-      document.removeEventListener('mousemove', onMove)
-      cancelAnimationFrame(raf)
-      cleanups.forEach(fn => fn())
+      cancelAnimationFrame(rafRef.current)
+      document.removeEventListener('mousemove', onMouseMove)
+      document.removeEventListener('mouseover', onMouseOver)
+      document.removeEventListener('mouseout', onMouseOut)
+      document.removeEventListener('mouseleave', onDocLeave)
+      document.removeEventListener('visibilitychange', onVisChange)
+      outerAnim.current?.pause()
+      innerAnim.current?.pause()
+      labelAnim.current?.pause()
+      removeLabel()
     }
   }, [])
 
@@ -169,7 +219,7 @@ export default function Cursor() {
           pointerEvents: 'none',
           zIndex: 9998,
           willChange: 'transform',
-          transition: 'background 0.18s ease, border-color 0.18s ease',
+          transition: 'background 0.15s ease, border-color 0.15s ease',
         }}
       />
       <div
